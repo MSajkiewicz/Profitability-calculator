@@ -1,6 +1,6 @@
 package com.lpg.profitabilitycalculator.repository;
 
-import com.lpg.profitabilitycalculator.domain.CalculationParameters;
+import com.lpg.profitabilitycalculator.domain.CalcParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +11,16 @@ public class DbService {
     @Autowired
     private ProfitabilityCalculatorRepository profitabilityCalculatorRepository;
 
-    public List<CalculationParameters> getAllCalculationParameters(){
+    public List<CalcParams> getAllCalculationParameters(){
         return profitabilityCalculatorRepository.findAll();
     }
 
-    public CalculationParameters getCalculation(Long id){
+    public CalcParams getCalculation(Long id){
         return profitabilityCalculatorRepository.findById(id).orElseThrow(() -> new CalculationNotFoundException());
     }
 
-    public CalculationParameters saveCalculation(CalculationParameters calculationParameters){
-        return profitabilityCalculatorRepository.save(calculationParameters);
+    public CalcParams saveCalculation(CalcParams calcParams){
+        return profitabilityCalculatorRepository.save(calcParams);
     }
 
     public void deleteCalculation(Long id){

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CalculationParametersDTO {
+public class FullCalculationDto {
     private Long id;
     private double lpgInstalationCost;
     private int distancePerMonth;
@@ -13,4 +13,8 @@ public class CalculationParametersDTO {
     private double lpgConsumption;
     private double bpPrice;
     private double lpgPrice;
+    private double monthsToFullRefund;
+    private double savingsPer100km;
+    private double savingsPer1000km;
+    private double savingsPerMonth;
 }

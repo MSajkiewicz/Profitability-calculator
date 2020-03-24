@@ -1,20 +1,20 @@
 package com.lpg.profitabilitycalculator.repository;
 
-import com.lpg.profitabilitycalculator.domain.CalculationParameters;
+import com.lpg.profitabilitycalculator.domain.CalcParams;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ProfitabilityCalculatorRepository extends CrudRepository<CalculationParameters, Long>{
+public interface ProfitabilityCalculatorRepository extends CrudRepository<CalcParams, Long>{
     @Override
-    List<CalculationParameters> findAll();
+    List<CalcParams> findAll();
 
     @Override
-    Optional<CalculationParameters> findById(Long id);
+    Optional<CalcParams> findById(Long id);
 
     @Override
-    CalculationParameters save(CalculationParameters calculationParameters);
+    CalcParams save(CalcParams calcParams);
 
     @Override
     void deleteById(Long id);

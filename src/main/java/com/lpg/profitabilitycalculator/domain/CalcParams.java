@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity(name = "calculation")
-public class CalculationParameters {
+public class CalcParams {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

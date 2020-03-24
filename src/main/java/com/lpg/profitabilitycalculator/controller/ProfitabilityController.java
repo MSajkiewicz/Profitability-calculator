@@ -1,6 +1,7 @@
 package com.lpg.profitabilitycalculator.controller;
 
-import com.lpg.profitabilitycalculator.domain.CalculationParametersDTO;
+import com.lpg.profitabilitycalculator.domain.CalcParamsDTO;
+import com.lpg.profitabilitycalculator.domain.FullCalculationDto;
 import com.lpg.profitabilitycalculator.mapper.ProfitabilityCalculationMapper;
 import com.lpg.profitabilitycalculator.repository.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,20 @@ public class ProfitabilityController {
     DbService dbService;
 
     @RequestMapping(method = RequestMethod.GET, value = "getCalculations")
-    public List<CalculationParametersDTO> getCalculations(){
+    public List<CalcParamsDTO> getCalculations(){
         return profitabilityCalculationMapper.mapToCalculationParametersDTOList(dbService.getAllCalculationParameters());
     }
     @RequestMapping(method = RequestMethod.GET, value = "getCalculation")
-    public CalculationParametersDTO getCalculation(@RequestParam Long id){
-        return profitabilityCalculationMapper.mapToCalculationParametersDTO(dbService.getCalculation(id));
+    public CalcParamsDTO getCalculation(@RequestParam Long id){
+        return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.getCalculation(id));
     }
     @RequestMapping(method = RequestMethod.POST, value = "createCalculation")
-    public void createCalculation(@RequestBody CalculationParametersDTO calculationParametersDTO){
-        dbService.saveCalculation(profitabilityCalculationMapper.mapToCalculationParameters(calculationParametersDTO));
+    public FullCalculationDto createCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+       return profitabilityCalculationMapper.mapToFullCalculationDto(calcParamsDTO);
     }
     @RequestMapping(method = RequestMethod.PUT, value = "updateCalculation")
-    public CalculationParametersDTO updateCalculation(@RequestBody CalculationParametersDTO calculationParametersDTO){
-    return profitabilityCalculationMapper.mapToCalculationParametersDTO(dbService.saveCalculation(profitabilityCalculationMapper.mapToCalculationParameters(calculationParametersDTO)));
+    public CalcParamsDTO updateCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+    return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.saveCalculation(profitabilityCalculationMapper.mapToCalculationParameters(calcParamsDTO)));
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteCalculation")
     public void deleteCalculation(Long id){
