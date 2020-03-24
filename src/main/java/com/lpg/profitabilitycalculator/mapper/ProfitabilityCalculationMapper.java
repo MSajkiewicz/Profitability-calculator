@@ -1,6 +1,6 @@
 package com.lpg.profitabilitycalculator.mapper;
 
-import com.lpg.profitabilitycalculator.domain.CalcParams;
+import com.lpg.profitabilitycalculator.domain.FullCalculation;
 import com.lpg.profitabilitycalculator.domain.CalcParamsDTO;
 import com.lpg.profitabilitycalculator.domain.FullCalculationDto;
 import com.lpg.profitabilitycalculator.service.CalcService;
@@ -16,41 +16,20 @@ public class ProfitabilityCalculationMapper {
     @Autowired
     CalcService calcService;
 
-    public CalcParams mapToCalculationParameters(CalcParamsDTO calcParamsDTO){
-        return new CalcParams(
+    public FullCalculation mapToFullCalculation(CalcParamsDTO calcParamsDTO){
+        return new FullCalculation(
                 calcParamsDTO.getId(),
                 calcParamsDTO.getLpgInstalationCost(),
                 calcParamsDTO.getDistancePerMonth(),
                 calcParamsDTO.getBpConsumption(),
                 calcParamsDTO.getLpgConsumption(),
                 calcParamsDTO.getBpPrice(),
-                calcParamsDTO.getLpgPrice());
+                calcParamsDTO.getLpgPrice(),
+                calcService.getMonthsToFullRefund(calcParamsDTO),
+                calcService.getSavingsPer100km(calcParamsDTO),
+                calcService.getSavingsPer1000km(calcParamsDTO),
+                calcService.getMonthsToFullRefund(calcParamsDTO));
     }
-
-    public CalcParamsDTO mapToCalcParamsDTO(CalcParams calcParams){
-        return new CalcParamsDTO(
-                calcParams.getId(),
-                calcParams.getLpgInstalationCost(),
-                calcParams.getDistancePerMonth(),
-                calcParams.getBpConsumption(),
-                calcParams.getLpgConsumption(),
-                calcParams.getBpPrice(),
-                calcParams.getLpgPrice());
-    }
-
-    public List<CalcParamsDTO> mapToCalculationParametersDTOList(final List<CalcParams> calcParamsList) {
-        return calcParamsList.stream()
-                .map(p -> new CalcParamsDTO(
-                        p.getId(),
-                        p.getLpgInstalationCost(),
-                        p.getDistancePerMonth(),
-                        p.getBpConsumption(),
-                        p.getLpgConsumption(),
-                        p.getBpPrice(),
-                        p.getLpgPrice()))
-                .collect(Collectors.toList());
-    }
-
     public FullCalculationDto mapToFullCalculationDto(CalcParamsDTO calcParamsDTO) {
         return new FullCalculationDto(
                 calcParamsDTO.getId(),
@@ -65,6 +44,25 @@ public class ProfitabilityCalculationMapper {
                 calcService.getSavingsPer1000km(calcParamsDTO),
                 calcService.getSavingsPerMonth(calcParamsDTO));
     }
+
+    public List<FullCalculationDto> mapToFullCalculationDTOList(final List<FullCalculation> fullCalculationList) {
+        return fullCalculationList.stream()
+                .map(p -> new FullCalculationDto(
+                        p.getId(),
+                        p.getLpgInstalationCost(),
+                        p.getDistancePerMonth(),
+                        p.getBpConsumption(),
+                        p.getLpgConsumption(),
+                        p.getBpPrice(),
+                        p.getLpgPrice(),
+                        p.getMonthsToFullRefund(),
+                        p.getSavingsPer100km(),
+                        p.getSavingsPer1000km(),
+                        p.getSavingsPerMonth()))
+                .collect(Collectors.toList());
+    }
+
+
 
 
 

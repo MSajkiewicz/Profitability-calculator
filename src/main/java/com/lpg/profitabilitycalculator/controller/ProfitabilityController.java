@@ -20,7 +20,7 @@ public class ProfitabilityController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getCalculations")
     public List<CalcParamsDTO> getCalculations(){
-        return profitabilityCalculationMapper.mapToCalculationParametersDTOList(dbService.getAllCalculationParameters());
+        return profitabilityCalculationMapper.mapToFullCalculationDTOList(dbService.getAllCalculationParameters());
     }
     @RequestMapping(method = RequestMethod.GET, value = "getCalculation")
     public CalcParamsDTO getCalculation(@RequestParam Long id){
@@ -32,7 +32,7 @@ public class ProfitabilityController {
     }
     @RequestMapping(method = RequestMethod.PUT, value = "updateCalculation")
     public CalcParamsDTO updateCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
-    return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.saveCalculation(profitabilityCalculationMapper.mapToCalculationParameters(calcParamsDTO)));
+    return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO)));
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteCalculation")
     public void deleteCalculation(Long id){

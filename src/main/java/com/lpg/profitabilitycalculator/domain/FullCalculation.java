@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity(name = "calculation")
-public class CalcParams {
+public class FullCalculation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,4 +33,16 @@ public class CalcParams {
 
     @Column(name = "LPG_PRICE")
     private double lpgPrice;
+
+    @Column(name = "MONTHS_TO_FULL_REFUND")
+    private double monthsToFullRefund;
+
+    @Column(name = "SAVINGS_PER_100_KM")
+    private double savingsPer100km;
+
+    @Column(name = "SAVINGS_PER_1000_KM")
+    private double savingsPer1000km;
+
+    @Column(name = "SAVINGS_PER_MONTH")
+    private double savingsPerMonth;
 }

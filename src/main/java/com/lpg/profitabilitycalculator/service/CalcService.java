@@ -1,6 +1,5 @@
 package com.lpg.profitabilitycalculator.service;
 
-import com.lpg.profitabilitycalculator.domain.CalcParams;
 import com.lpg.profitabilitycalculator.domain.CalcParamsDTO;
 import org.springframework.stereotype.Service;
 
