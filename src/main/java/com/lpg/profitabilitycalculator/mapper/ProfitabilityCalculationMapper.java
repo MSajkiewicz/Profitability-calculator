@@ -30,19 +30,19 @@ public class ProfitabilityCalculationMapper {
                 calcService.getSavingsPer1000km(calcParamsDTO),
                 calcService.getMonthsToFullRefund(calcParamsDTO));
     }
-    public FullCalculationDto mapToFullCalculationDto(CalcParamsDTO calcParamsDTO) {
+    public FullCalculationDto mapToFullCalculationDto(FullCalculation fullCalculation) {
         return new FullCalculationDto(
-                calcParamsDTO.getId(),
-                calcParamsDTO.getLpgInstalationCost(),
-                calcParamsDTO.getDistancePerMonth(),
-                calcParamsDTO.getBpConsumption(),
-                calcParamsDTO.getLpgConsumption(),
-                calcParamsDTO.getBpPrice(),
-                calcParamsDTO.getLpgPrice(),
-                calcService.getMonthsToFullRefund(calcParamsDTO),
-                calcService.getSavingsPer100km(calcParamsDTO),
-                calcService.getSavingsPer1000km(calcParamsDTO),
-                calcService.getSavingsPerMonth(calcParamsDTO));
+                fullCalculation.getId(),
+                fullCalculation.getLpgInstalationCost(),
+                fullCalculation.getDistancePerMonth(),
+                fullCalculation.getBpConsumption(),
+                fullCalculation.getLpgConsumption(),
+                fullCalculation.getBpPrice(),
+                fullCalculation.getLpgPrice(),
+                fullCalculation.getMonthsToFullRefund(),
+                fullCalculation.getSavingsPer100km(),
+                fullCalculation.getSavingsPer1000km(),
+                fullCalculation.getSavingsPerMonth());
     }
 
     public List<FullCalculationDto> mapToFullCalculationDTOList(final List<FullCalculation> fullCalculationList) {

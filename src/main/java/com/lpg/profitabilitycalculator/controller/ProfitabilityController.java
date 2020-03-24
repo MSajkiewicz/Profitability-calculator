@@ -19,20 +19,20 @@ public class ProfitabilityController {
     DbService dbService;
 
     @RequestMapping(method = RequestMethod.GET, value = "getCalculations")
-    public List<CalcParamsDTO> getCalculations(){
+    public List<FullCalculationDto> getCalculations(){
         return profitabilityCalculationMapper.mapToFullCalculationDTOList(dbService.getAllCalculationParameters());
     }
     @RequestMapping(method = RequestMethod.GET, value = "getCalculation")
-    public CalcParamsDTO getCalculation(@RequestParam Long id){
-        return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.getCalculation(id));
+    public FullCalculationDto getCalculation(@RequestParam Long id){
+        return profitabilityCalculationMapper.mapToFullCalculationDto(dbService.getCalculation(id));
     }
     @RequestMapping(method = RequestMethod.POST, value = "createCalculation")
-    public FullCalculationDto createCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
-       return profitabilityCalculationMapper.mapToFullCalculationDto(calcParamsDTO);
+    public void createCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+         dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO));
     }
     @RequestMapping(method = RequestMethod.PUT, value = "updateCalculation")
-    public CalcParamsDTO updateCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
-    return profitabilityCalculationMapper.mapToCalcParamsDTO(dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO)));
+    public FullCalculationDto updateCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+        return profitabilityCalculationMapper.mapToFullCalculationDto(dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO)));
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteCalculation")
     public void deleteCalculation(Long id){
