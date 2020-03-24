@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CalcParamsDTO {
+public class CalcParamsDto {
     private Long id;
     private double lpgInstalationCost;
     private int distancePerMonth;

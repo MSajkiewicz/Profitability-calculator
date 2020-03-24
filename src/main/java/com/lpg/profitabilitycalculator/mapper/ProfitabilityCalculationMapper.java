@@ -1,7 +1,7 @@
 package com.lpg.profitabilitycalculator.mapper;
 
 import com.lpg.profitabilitycalculator.domain.FullCalculation;
-import com.lpg.profitabilitycalculator.domain.CalcParamsDTO;
+import com.lpg.profitabilitycalculator.domain.CalcParamsDto;
 import com.lpg.profitabilitycalculator.domain.FullCalculationDto;
 import com.lpg.profitabilitycalculator.service.CalcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class ProfitabilityCalculationMapper {
     @Autowired
     CalcService calcService;
 
-    public FullCalculation mapToFullCalculation(CalcParamsDTO calcParamsDTO){
+    public FullCalculation mapToFullCalculation(CalcParamsDto calcParamsDTO){
         return new FullCalculation(
                 calcParamsDTO.getId(),
                 calcParamsDTO.getLpgInstalationCost(),
@@ -28,7 +28,7 @@ public class ProfitabilityCalculationMapper {
                 calcService.getMonthsToFullRefund(calcParamsDTO),
                 calcService.getSavingsPer100km(calcParamsDTO),
                 calcService.getSavingsPer1000km(calcParamsDTO),
-                calcService.getMonthsToFullRefund(calcParamsDTO));
+                calcService.getSavingsPerMonth(calcParamsDTO));
     }
     public FullCalculationDto mapToFullCalculationDto(FullCalculation fullCalculation) {
         return new FullCalculationDto(

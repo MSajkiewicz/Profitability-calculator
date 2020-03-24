@@ -1,6 +1,6 @@
 package com.lpg.profitabilitycalculator.controller;
 
-import com.lpg.profitabilitycalculator.domain.CalcParamsDTO;
+import com.lpg.profitabilitycalculator.domain.CalcParamsDto;
 import com.lpg.profitabilitycalculator.domain.FullCalculationDto;
 import com.lpg.profitabilitycalculator.mapper.ProfitabilityCalculationMapper;
 import com.lpg.profitabilitycalculator.repository.DbService;
@@ -27,11 +27,11 @@ public class ProfitabilityController {
         return profitabilityCalculationMapper.mapToFullCalculationDto(dbService.getCalculation(id));
     }
     @RequestMapping(method = RequestMethod.POST, value = "createCalculation")
-    public void createCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+    public void createCalculation(@RequestBody CalcParamsDto calcParamsDTO){
          dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO));
     }
     @RequestMapping(method = RequestMethod.PUT, value = "updateCalculation")
-    public FullCalculationDto updateCalculation(@RequestBody CalcParamsDTO calcParamsDTO){
+    public FullCalculationDto updateCalculation(@RequestBody CalcParamsDto calcParamsDTO){
         return profitabilityCalculationMapper.mapToFullCalculationDto(dbService.saveCalculation(profitabilityCalculationMapper.mapToFullCalculation(calcParamsDTO)));
     }
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteCalculation")
